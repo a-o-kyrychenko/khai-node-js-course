@@ -1,22 +1,27 @@
-const http = require('http');
-const port = 3000; // Порт, на якому буде працювати сервер
-// Створення HTTP-сервера
-const server = http.createServer((req, res) => {
-   res.writeHead(200, {'Content-Type': 'text/html'}); // Повідомлюємо що формат буде HTML щоб браузер його відобразив
-   const url = req.url;
-    if(url ==='/about'){
-       res.write('<h1>about us page<h1>'); //write a response
-       res.end(); //end the response
-    }else if(url ==='/contact'){
-       res.write('<h1>contact us page<h1>'); //write a response
-       res.end(); //end the response
-    }else{
-       res.write('<h1>Hello World!<h1>'); //write a response
-       res.write('<h2>My name Anna<h2>'); //write a response
-       res.end(); //end the response
-    }
+const express = require('express');
+const app = express();
+
+// Optional: порт из env или дефолт
+const port = process.env.PORT || 3000;
+
+// простой GET на корень
+app.get('/', (req, res) => {
+  res.send('response for GET request');
 });
-// Прослуховування порту та адреси сервера
-server.listen(port, () => {
- console.log(`server start at http://localhost:${port}/`);
+
+// пример маршрута с параметром
+const products = [
+  { id: 1, name: 'Product 1', brand: 'Brand A' },
+  { id: 2, name: 'Product 2', brand: 'Brand B' },
+  { id: 3, name: 'Product 3', brand: 'Brand A' }
+];
+
+app.get('/products/:brand', (req, res) => {
+  const { brand } = req.params;
+  const filtered = products.filter(p => p.brand === brand);
+  res.json(filtered);
+});
+
+app.listen(port, () => {
+  console.log(`server start at http://localhost:${port}/`);
 });
