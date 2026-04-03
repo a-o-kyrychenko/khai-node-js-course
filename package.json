@@ -1,23 +1,21 @@
 {
-  "name": "khai-node-js-course",
+  "name": "nodejs-course",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/a-o-kyrychenko/khai-node-js-course#readme",
-  "bugs": {
-    "url": "https://github.com/a-o-kyrychenko/khai-node-js-course/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/a-o-kyrychenko/khai-node-js-course.git"
-  },
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node src/index.js",
+    "migration:generate": "drizzle-kit generate:pg",
+    "migration:push": "drizzle-kit push:pg",
+    "migration:up": "drizzle-kit up"
   },
+  "author": "anna kyrychenko",
+  "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "drizzle-kit": "^0.20.14",
+    "drizzle-orm": "^0.30.1",
+    "express": "4.18.2",
+    "pg": "^8.11.3"
   }
 }
